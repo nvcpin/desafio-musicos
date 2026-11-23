@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Painel da professora — Desafio dos Pequenos Músicos</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,5 61,38 96,38 68,59 79,92 50,72 21,92 32,59 4,38 39,38' fill='%23f6b81f'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap">
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="star" viewBox="0 0 100 100"><polygon points="50,6 62,37 95,39 69,60 78,92 50,74 22,92 31,60 5,39 38,37" stroke-width="4" stroke-linejoin="round"/></symbol>
+</svg>
+<div class="wrap wide">
+  <h1 style="font-size:clamp(26px,6vw,38px);color:var(--blue-d);margin-top:14px">🎼 Painel da professora</h1>
+  <p style="color:var(--muted);margin:6px 0 0">Desafio dos Pequenos Músicos · 23 a 27/11/2026</p>
+
+  <section id="login" class="card" hidden>
+    <h2>Entrar</h2>
+    <p>Acesso restrito à professora. Entre com a conta Google autorizada.</p>
+    <button id="b-login" class="btn blue" type="button" style="max-width:360px">Entrar com Google</button>
+    <div id="login-msg"></div>
+  </section>
+
+  <section id="denied" class="card" hidden>
+    <h2>Sem permissão</h2>
+    <p>A conta <b id="who-denied"></b> não tem acesso a este painel. Entre com a conta da professora.</p>
+    <button id="b-out2" class="btn sec inline" type="button">Sair e trocar de conta</button>
+  </section>
+
+  <section id="app" hidden>
+    <div class="bar">
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" id="t-geral" aria-selected="true">Tabela geral</button>
+        <button class="tab" role="tab" id="t-dia" aria-selected="false">Por dia</button>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <span id="upd" style="color:var(--muted);font-size:14px"></span>
+        <button id="b-ref" class="btn sec inline" type="button">↻ Atualizar</button>
+        <button id="b-csv" class="btn blue inline" type="button">⬇ Exportar CSV</button>
+        <button id="b-out" class="btn sec inline" type="button">Sair</button>
+      </div>
+    </div>
+    <div id="msg"></div>
+    <div class="kpis" id="kpis"></div>
+
+    <div id="v-geral">
+      <div class="tablewrap"><table id="tbl"></table></div>
+      <p class="legend">% do desafio = estrelas ÷ 5 dias. % até hoje = estrelas ÷ dias já disponíveis. Atualiza sozinho a cada 30 segundos.</p>
+    </div>
+
+    <div id="v-dia" hidden>
+      <div class="tabs" id="daybtns" style="margin-top:14px"></div>
+      <div class="cols" id="daylists"></div>
+    </div>
+  </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+<script src="painel.js?v=1"></script>
+</body>
+</html>

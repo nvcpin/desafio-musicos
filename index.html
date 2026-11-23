@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Desafio dos Pequenos Músicos</title>
+<meta name="description" content="5 dias, 5 estrelas: estude seu instrumento por 15 minutos por dia e conquiste sua estrela!">
+<meta name="theme-color" content="#4aa3e8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,5 61,38 96,38 68,59 79,92 50,72 21,92 32,59 4,38 39,38' fill='%23f6b81f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap">
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="star" viewBox="0 0 100 100"><polygon points="50,6 62,37 95,39 69,60 78,92 50,74 22,92 31,60 5,39 38,37" stroke-width="4" stroke-linejoin="round"/></symbol>
+</svg>
+<canvas id="confetti" aria-hidden="true"></canvas>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="note" style="left:2%;top:30px" aria-hidden="true">♪</span>
+    <span class="note" style="right:3%;top:90px;animation-delay:1.5s" aria-hidden="true">♫</span>
+    <span class="note" style="left:8%;top:210px;animation-delay:3s;font-size:30px" aria-hidden="true">♩</span>
+    <span class="eyebrow">🎵 Bandinha infantil</span>
+    <h1>DESAFIO DOS PEQUENOS MÚSICOS</h1>
+    <div class="stars5" aria-hidden="true">
+      <svg class="star-fill" style="fill:#f6b81f;stroke:#d9960a"><use href="#star"/></svg><svg style="fill:#f6b81f;stroke:#d9960a"><use href="#star"/></svg><svg style="fill:#f6b81f;stroke:#d9960a"><use href="#star"/></svg><svg style="fill:#f6b81f;stroke:#d9960a"><use href="#star"/></svg><svg style="fill:#f6b81f;stroke:#d9960a"><use href="#star"/></svg>
+    </div>
+    <div class="sub">5 DIAS • 5 ESTRELAS</div>
+    <p class="msg">Estude seu instrumento por pelo menos 15 minutos e conquiste sua estrela do dia!</p>
+  </header>
+
+  <section class="infos" aria-label="Informações importantes">
+    <div class="info"><div class="ic">📅</div><div><b>DESAFIO: 23 A 27/11</b><span>Segunda a sexta-feira</span></div></div>
+    <div class="info"><div class="ic">⏱️</div><div><b>15 MINUTOS DE TREINO POR DIA</b><span>Uma estrela para cada dia concluído</span></div></div>
+    <div class="info"><div class="ic">🎶</div><div><b>ENSAIO GERAL: SÁBADO, 28/11, ÀS 15H</b><span>Apresentação final: 06/12</span></div></div>
+  </section>
+
+  <div class="aviso"><div class="ic">⚠️</div><div><b>Atenção, papai e mamãe:</b> registre a estrela <b>somente depois</b> que a criança terminar os 15 minutos de treino. A estrela só pode ser registrada no próprio dia.</div></div>
+
+  <section class="card" aria-labelledby="h-escolha">
+    <h2 id="h-escolha">Quem vai treinar hoje?</h2>
+    <label class="lbl" for="sel">Escolha o nome da criança</label>
+    <select id="sel" class="sel" disabled><option value="">Carregando…</option></select>
+    <div class="hp" aria-hidden="true"><label>Não preencha <input id="hp" type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+    <div id="loadmsg"></div>
+
+    <div id="child" hidden>
+      <hr style="border:0;border-top:2px dashed var(--line);margin:20px 0">
+      <p class="who" id="who"></p>
+      <p class="total" id="total"></p>
+      <div class="days" id="days"></div>
+      <div id="today-area"></div>
+    </div>
+  </section>
+
+  <section class="card" aria-labelledby="h-prog">
+    <h2 id="h-prog">Progresso da nossa bandinha</h2>
+    <div class="chart" id="chart" aria-live="polite"><div class="msg-box msg-info">Carregando…</div></div>
+    <p class="legend" id="legend"></p>
+  </section>
+
+  <footer>
+    <p>🎵 Cada estrela conta! Vamos juntos para o ensaio geral.</p>
+    <p><a href="painel.html">Painel da professora</a></p>
+  </footer>
+</div>
+
+<dialog id="dlg-confirm" aria-labelledby="dc-h">
+  <h3 id="dc-h">A criança já treinou?</h3>
+  <p id="dc-p"></p>
+  <div class="row">
+    <button class="btn" id="dc-yes" style="margin-top:0">Sim, treinou 15 minutos!</button>
+    <button class="btn sec" id="dc-no">Ainda não</button>
+  </div>
+</dialog>
+
+<dialog id="dlg-win" aria-labelledby="dw-h">
+  <svg class="bigstar" style="fill:#f6b81f;stroke:#d9960a"><use href="#star"/></svg>
+  <h3 id="dw-h">Parabéns!</h3>
+  <p id="dw-p"></p>
+  <div class="row"><button class="btn" id="dw-ok" style="margin-top:0">Continuar</button></div>
+</dialog>
+
+<script src="config.js"></script>
+<script src="app.js?v=1"></script>
+</body>
+</html>
