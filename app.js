@@ -96,7 +96,7 @@
     var a = $('today-area'); a.innerHTML = ''; clearInterval(timer);
     var t = clock.today;
     if (t < DAYS[0]) { a.innerHTML = '<div class="msg-box msg-info">O desafio começa na segunda-feira, 23/11. Volte lá e conquiste sua primeira estrela! 🎵</div>'; return; }
-    var recovery = t === '2026-11-28' && nowMs() < clock.end && earned.length === 4;
+    var recovery = t === '2026-11-28' && nowMs() < clock.end && (earned.length === 4 || (current === 12 && earned.length < 5));
     if (t > DAYS[4] && !recovery) {
       a.innerHTML = '<div class="msg-box msg-info">O desafio terminou. Obrigado por participar! Nos vemos no ensaio geral, sábado, 28/11, às 15h. 🎶</div>'; return;
     }
@@ -104,7 +104,7 @@
       a.innerHTML = '<div class="msg-box msg-ok">⭐ A estrela de hoje já foi conquistada. Parabéns!</div>'; startCount(a); return;
     }
     var b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.id = 'btn-star';
-    b.innerHTML = recovery ? '⭐ Recuperar minha última estrela' : '⭐ Conquistar estrela'; b.addEventListener('click', askConfirm); a.appendChild(b);
+    b.innerHTML = recovery ? (earned.length === 4 ? '⭐ Recuperar minha última estrela' : '⭐ Recuperar estrela') : '⭐ Conquistar estrela'; b.addEventListener('click', askConfirm); a.appendChild(b);
     var h = document.createElement('p'); h.className = 'legend'; h.style.textAlign = 'center';
     h.textContent = 'Toque somente depois dos 15 minutos de treino.'; a.appendChild(h);
     if (recovery) { var note = document.createElement('p'); note.className = 'legend'; note.textContent = 'Chance extra de recuperação até meio-dia!'; a.appendChild(note); }
@@ -150,7 +150,7 @@
     if (earned.indexOf(day) < 0) earned.push(day);
     var i = DAYS.indexOf(day), c = children.filter(function (x) { return x.id === current; })[0];
     renderDays(day);
-    $('dw-p').textContent = (c ? c.name.split(' ')[0] : 'Você') + (recovered ? ' recuperou a última estrela! ' : ' conquistou a estrela de ' + NAMES[i].toLowerCase() + '! ') + (earned.length === 5 ? 'As 5 estrelas! Que campeão(ã)! 🏆' : 'Continue assim! 🎶');
+    $('dw-p').textContent = (c ? c.name.split(' ')[0] : 'Você') + (recovered ? ' recuperou uma estrela! ' : ' conquistou a estrela de ' + NAMES[i].toLowerCase() + '! ') + (earned.length === 5 ? 'As 5 estrelas! Que campeão(ã)! 🏆' : 'Continue assim! 🎶');
     $('dlg-win').showModal(); confetti(); loadProgress();
   }
 
